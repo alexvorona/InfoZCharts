@@ -9,6 +9,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using ChartWPF.Model;
 using ChartWPF.View;
+using LiveCharts.Geared;
 
 namespace ChartWPF.ViewModel
 {
@@ -45,8 +46,7 @@ namespace ChartWPF.ViewModel
                 for (int i = 0; i < sensorsCount; i++)
                 {
                     _graphsList.Add(new Graph(i, $"Sensor #{i + 1}", new Sensor()));
-                }
-                SeriesCollection = new SeriesCollection();
+                }                
             }
             catch (Exception ex)
             {
@@ -88,13 +88,13 @@ namespace ChartWPF.ViewModel
             }
         }
 
-        private SeriesCollection _seriesCollection;
-        public SeriesCollection SeriesCollection
+        private GearedValues<double> _values;
+        public GearedValues<double> Values
         {
-            get { return _seriesCollection; }
+            get { return _values; }
             set
             {
-                _seriesCollection = value;
+                _values = value;
                 RaisePropertyChanged();
             }
         }
@@ -120,8 +120,7 @@ namespace ChartWPF.ViewModel
                 if (_viewMasterCommand == null)
                 {
                     _viewMasterCommand = new RelayCommand(() => 
-                    {
-                        SeriesCollection.Clear();
+                    {                        
                         CurrentView = _masterView;
                         FormTitle = "Master Form";                        
                     });
@@ -156,15 +155,8 @@ namespace ChartWPF.ViewModel
         {
             Graph graph = _graphsList[id];
 
-            var series = new LineSeries
-            {
-                Title = graph.Name,
-                Values = graph.Sensor.Values
-            };
-            var seriesCollection = new SeriesCollection();
-            seriesCollection.Add(series);            
-            SeriesCollection = seriesCollection;
-
+            Values = graph.Sensor.Values;
+           
         }
     }
 }
