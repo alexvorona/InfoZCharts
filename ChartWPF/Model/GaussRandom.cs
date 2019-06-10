@@ -33,23 +33,4 @@ namespace ChartWPF.Model
             return _normalDist.Sample();
         }       
     }
-
-    public static class Gauss
-    {
-        public static IEnumerable<double> NormalSequence(double mean, double standardDeviation)
-        {
-            return MathNet.Numerics.Distributions.Normal.Samples(SystemRandomSource.Default, mean, standardDeviation);
-        }
-        public static double[] Normal(int length, double mean, double standardDeviation)
-        {
-            if (length < 0)
-            {
-                throw new ArgumentOutOfRangeException("length");
-            }
-
-            var samples = new double[length];
-            MathNet.Numerics.Distributions.Normal.Samples(SystemRandomSource.Default, samples, mean, standardDeviation);
-            return samples;
-        }
-    }
 }

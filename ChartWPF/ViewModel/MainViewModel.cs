@@ -10,6 +10,7 @@ using LiveCharts.Wpf;
 using ChartWPF.Model;
 using ChartWPF.View;
 using LiveCharts.Geared;
+using LiveCharts.Defaults;
 
 namespace ChartWPF.ViewModel
 {
@@ -88,8 +89,8 @@ namespace ChartWPF.ViewModel
             }
         }
 
-        private GearedValues<double> _values;
-        public GearedValues<double> Values
+        private GearedValues<ObservablePoint> _values;
+        public GearedValues<ObservablePoint> Values
         {
             get { return _values; }
             set

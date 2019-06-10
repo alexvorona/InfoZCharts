@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Geared;
 
 namespace ChartWPF.Model
@@ -19,10 +20,10 @@ namespace ChartWPF.Model
 
         private GaussRandom _r;
 
-        public GearedValues<double> Values { get; set; }        
+        public GearedValues<ObservablePoint> Values { get; set; }        
         public Sensor()
         {
-            Values = new GearedValues<double>();
+            Values = new GearedValues<ObservablePoint>();
             _r = new GaussRandom();
            
             Task.Factory.StartNew(GetNewValue);
@@ -30,15 +31,17 @@ namespace ChartWPF.Model
 
         public void GetNewValue()
         {
+            int i = 0;
             while (true)
             {
                 try
                 {
                     double trend = _r.Next();
                     Thread.Sleep(1000 / valuePerSecond);
-                    var first = Values.DefaultIfEmpty(0).FirstOrDefault();
+                    var first = Values.FirstOrDefault();
                     if (Values.Count > keepRecords - 1) Values.Remove(first);
-                    if (Values.Count < keepRecords) Values.Add(trend);
+                    if (Values.Count < keepRecords) Values.Add(new ObservablePoint(i,trend));
+                    i++;
                     //Console.WriteLine(trend);
                 }
                 catch (Exception ex)

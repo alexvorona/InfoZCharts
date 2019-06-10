@@ -16,10 +16,9 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <!--<local:ChartControl x:Name="Chart" Grid.Row="0" Grid.Column="0">DataTooltip="{x:Null}"</local:ChartControl>-->
         <lvc:CartesianChart Grid.Row="0" Grid.Column="0" DisableAnimations="True" Hoverable="False" LegendLocation="Right" >
             <lvc:CartesianChart.Series>
-                <lvc:LineSeries Values="{Binding Values}" StrokeThickness="1"  PointGeometry="{x:Null}"
+                <lvc:LineSeries Values="{Binding Values}" StrokeThickness="1" PointGeometrySize="10" PointGeometry="{x:Static lvc:DefaultGeometries.Circle}" 
                         Fill="Transparent" LineSmoothness="0"  />              
             </lvc:CartesianChart.Series>
             <lvc:CartesianChart.AxisY>

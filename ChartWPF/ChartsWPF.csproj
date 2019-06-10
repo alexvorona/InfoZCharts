@@ -102,19 +102,12 @@
     <Compile Include="Model\Sensor.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\ChartControl.xaml.cs">
-      <DependentUpon>ChartControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\DetailControl.xaml.cs">
       <DependentUpon>DetailControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MasterControl.xaml.cs">
       <DependentUpon>MasterControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="View\ChartControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\DetailControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
